@@ -8,7 +8,7 @@ import './App.css';
 
 function App(props) {
   return (
-    <HashRouter basename="/#">
+    <HashRouter basename="/">
       <Main className="app">
         <Route exact path={ROUTES.HOME} component={Home}/>
       </Main>
