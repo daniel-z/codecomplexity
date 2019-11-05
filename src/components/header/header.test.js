@@ -2,7 +2,7 @@ import React from 'react';
 import AppHeader from './Header';
 import { render } from 'enzyme';
 
-it('Renders without breaking', () => {
+it('Should render a h1 with correct className', () => {
   const wrapper = render(<AppHeader />);
   expect(wrapper.is('h1')).toBe(true);
   expect(wrapper.hasClass('app-header')).toBe(true);
