@@ -1,11 +1,15 @@
-import React from 'react';
-import { Header } from 'semantic-ui-react';
-import './header.css';
+import React from "react";
+import { Header } from "semantic-ui-react";
+import "./header.css";
 
 function AppHeader() {
   return (
-    <Header as='h1' className="app-header">
-      Code Complexity by <a rel="noopener noreferrer" target="_blank" href="https://danielzamorano.pro">Daniel Zamorano</a>
+    <Header className="app-header">
+      <h1>Code Complexity</h1>
+      <a rel="noopener noreferrer" target="_blank" href="https://danielzamorano.pro">
+        {" "}
+        by Daniel Zamorano
+      </a>
     </Header>
   );
 }

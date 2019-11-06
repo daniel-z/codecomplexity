@@ -1,19 +1,26 @@
-import React from 'react';
-import { Grid } from 'semantic-ui-react';
-import CodeSection from './code-section/code-section'
-import './home.css';
+import React from "react";
+import { Grid } from "semantic-ui-react";
+import CodeSection from "./code-section/code-section";
+import "./home.scss";
 
 function Home() {
   return (
-    <Grid.Row>
-      <Grid.Column width={8}>
-        <CodeSection />
-      </Grid.Column>
-      <Grid.Column width={4}>
-        Graph
-      </Grid.Column>
-    </Grid.Row>
-
+    <div className="home page">
+      <Grid container relaxed>
+        <Grid.Row>
+          <Grid.Column width={16}>
+            <p className="intro">Visualize the performance of your code</p>
+            <p className="intro">.</p>
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Column width={8}>
+          <CodeSection />
+        </Grid.Column>
+        <Grid.Column width={8}>
+          <div className="graph"></div>
+        </Grid.Column>
+      </Grid>
+    </div>
   );
 }
 
