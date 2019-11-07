@@ -1,49 +1,18 @@
-// Basic Color
-$black: #0e0d0e;
-$white: #fff;
-$light-blue: #dfdee5;
-
-$gray: #866c76;
-$gray-alpha: #111;
-$gray-beta: #202020;
-$gray-gama: #333;
-$gray-delta: #999;
-$gray-epsilon: #4e463f;
-$gray-zeta: #36302e;
-
-// Theme Colors
-$cod-gray: #1e1e1e;
-$pink: #ce9178;
-$straw: #d7ba7d;
-$havelock-blue: #569cd6;
-$anakiwa: #9cdcfe;
-$coriander: #b5cea8;
-
-$font-size-medium: 16px;
-$font-size-large: 18px;
-$font-size-xlarge: 22px;
-$pink: #ce9178;
-$straw: #d7ba7d;
-$havelock-blue: #569cd6;
-
-$title-ffamily: "Abel", sans-serif;
-$primary-ffamily: "Quicksand", sans-serif;
-$monospace-ffamily: "Cutive Mono", monospace;
+@import "../../../styles/variables.scss";
 
 .code-section {
   width: 100%;
-  pre {
-    color: $straw;
-    background-color: $gray-alpha;
-    padding: 10px 25px;
+  padding: 25px;
+  background-color: $white;
 
-    code {
-      font-family: $monospace-ffamily;
-      font-size: $font-size-medium;
-    }
+  .code-editor {
+    min-height: 300px;
   }
 
   .description {
+    margin-top: 20px;
+    padding-top: 20px;
     font-size: $font-size-medium;
+    border-top: 1px solid $gray-delta;
   }
 }
