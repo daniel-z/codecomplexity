@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./code-section.scss";
 
 import Editor from "react-simple-code-editor";
@@ -7,41 +7,15 @@ import "prismjs/components/prism-clike";
 import "prismjs/components/prism-javascript";
 import "prismjs/themes/prism.css";
 
-const theCode = `
-  const results = [];
-  for(var i = 0; i < array.length; i++) {
-    for(var j = 0; j < array.length; j++) {
-      results.push(array[i]*array[j]);
-    }    
-  }
-  return results;
-`;
-
-function buildFnc(fncCode) {
-  return window.Function(`
-    return (array) => {
-      ${fncCode}
-    };
-  `)();
-}
-
-function CodeSection() {
-  const [state, setState] = useState({
-    code: theCode,
-    fnc: buildFnc(theCode)
-  });
+function CodeSection(props) {
+  const { onCodeUpdate, code } = props;
 
   return (
     <section className="code-section">
       <Editor
         className="code-editor"
-        value={state.code}
-        onValueChange={code => {
-          setState({
-            code,
-            fnc: buildFnc(theCode)
-          });
-        }}
+        value={code}
+        onValueChange={onCodeUpdate}
         highlight={code => highlight(code, languages.js)}
         padding={10}
         style={{
