@@ -8,7 +8,7 @@ import "prismjs/components/prism-javascript";
 import "prismjs/themes/prism.css";
 
 function CodeSection(props) {
-  const { onCodeUpdate, code } = props;
+  const { onCodeUpdate, onRunCode, code } = props;
 
   return (
     <section className="code-section">
@@ -16,7 +16,7 @@ function CodeSection(props) {
         className="code-editor"
         value={code}
         onValueChange={onCodeUpdate}
-        highlight={code => highlight(code, languages.js)}
+        highlight={hcode => highlight(hcode, languages.js)}
         padding={10}
         style={{
           fontFamily: '"Fira code", "Fira Mono", monospace',
@@ -25,7 +25,9 @@ function CodeSection(props) {
       />
 
       <p className="description">
-        Algorythm complexity O(n2), nested loops. <br />
+        <button className="run-code" onClick={onRunCode}>
+          Run >
+        </button>
       </p>
     </section>
   );

@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import "./code-chart.scss";
 
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from "recharts";
 
 function CodeChart(props) {
-  const { data } = props;
-
-  return (
+  const { data, loading } = props;
+  console.log(props);
+  return loading ? (
+    <div>Loading...</div>
+  ) : (
     <section className="code-chart">
       <LineChart
         width={500}
-        height={300}
+        height={500}
         data={data}
         margin={{
           top: 5,
@@ -24,7 +26,7 @@ function CodeChart(props) {
         <YAxis />
         <Tooltip />
         <Legend />
-        <Line type="monotone" dataKey="time" stroke="#82ca9d" activeDot={{ r: 8 }} />
+        <Line type="monotone" dataKey="time" stroke="#82ca9d" activeDot={{ r: 2 }} />
       </LineChart>
     </section>
   );

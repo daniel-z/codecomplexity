@@ -1,13 +1,20 @@
 .home.page {
-  .grid.container {
-    width: 100% !important;
+  text-align: center;
+
+  .grid {
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
   .intro {
-    text-align: center;
-    font-size: 18px;
-    margin-bottom: 20px;
+    font-size: 20px;
     text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .details {
+    font-size: 20px;
+    margin-bottom: 20px;
   }
 
   .graph {
