@@ -5,7 +5,7 @@ import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from "r
 
 function CodeChart(props) {
   const { data, loading } = props;
-  console.log(props);
+
   return loading ? (
     <div>Loading...</div>
   ) : (
@@ -22,11 +22,17 @@ function CodeChart(props) {
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
+        <XAxis
+          dataKey={data => `${data.name >= 1000 ? `${data.name / 1000},000` : data.name} items`}
+        />
         <YAxis />
-        <Tooltip />
+        <Tooltip
+          formatter={(value, name, props) =>
+            value >= 1000 ? `${value / 1000} secs` : `${value} ms`
+          }
+        />
         <Legend />
-        <Line type="monotone" dataKey="time" stroke="#82ca9d" activeDot={{ r: 2 }} />
+        <Line type="monotone" dataKey="time" stroke="#127cc9" />
       </LineChart>
     </section>
   );

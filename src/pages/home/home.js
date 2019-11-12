@@ -5,12 +5,15 @@ import CodeChart from "./code-chart/code-chart";
 import "./home.scss";
 
 const initialCode = `
+  // inputArray contains all the inputs for your code
+
   const results = [];
   for(var i = 0; i < inputArray.length; i++) {
     for(var j = 0; j < inputArray.length; j++) {
       results.push(inputArray[i]*inputArray[j]);
     }
   }
+
   return results;
 `;
 
@@ -20,6 +23,11 @@ function buildFnc(fncCode) {
       ${fncCode}
     };
   `)();
+}
+
+function* generateIterator(limit) {
+  let idx = 0;
+  while (idx < limit) yield idx++;
 }
 
 function Home() {
@@ -35,17 +43,12 @@ function Home() {
     ]
   });
 
-  const updateCode = newCode => {
+  function updateCode(newCode) {
     setGlobalState({
       ...state,
       code: newCode,
       actualFnc: buildFnc(newCode)
     });
-  };
-
-  function* generateIterator(limit) {
-    let idx = 0;
-    while (idx < limit) yield idx++;
   }
 
   function runTests(testFnc, tests) {
@@ -63,7 +66,7 @@ function Home() {
         const endTime = Date.now();
 
         metrics.push({
-          name: `i${arrayItems}`,
+          name: arrayItems,
           time: endTime - startTime
         });
         actualCase = cases.next();
