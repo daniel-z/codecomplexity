@@ -22,29 +22,6 @@ function buildFnc(fncCode) {
   `)();
 }
 
-const data = [
-  {
-    name: "L 1,000",
-    time: 1000
-  },
-  {
-    name: "L 10,000",
-    time: 3000
-  },
-  {
-    name: "L 100,000",
-    time: 4000
-  },
-  {
-    name: "L 1,000,000",
-    time: 20000
-  },
-  {
-    name: "L 10,000,000",
-    time: 50000
-  }
-];
-
 function Home() {
   const [state, setGlobalState] = useState({
     code: initialCode,
