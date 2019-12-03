@@ -11,8 +11,8 @@ function CodeChart(props) {
   ) : (
     <section className="code-chart">
       <LineChart
-        width={500}
-        height={500}
+        width={435}
+        height={365}
         data={data}
         margin={{
           top: 5,
@@ -25,7 +25,7 @@ function CodeChart(props) {
         <XAxis
           dataKey={data => `${data.name >= 1000 ? `${data.name / 1000},000` : data.name} items`}
         />
-        <YAxis />
+        <YAxis dataKey="time" />
         <Tooltip
           formatter={(value, name, props) =>
             value >= 1000 ? `${value / 1000} secs` : `${value} ms`

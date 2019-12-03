@@ -6,34 +6,22 @@ import "./home.scss";
 
 const initialCode = `
   // inputArray contains all the inputs for your code
+  // try to perform just time consuming operations
+  // if you save data inside loops you can have a memory error
 
   const results = [];
   for(var i = 0; i < inputArray.length; i++) {
     for(var j = 0; j < inputArray.length; j++) {
-      results.push(inputArray[i]*inputArray[j]);
+      inputArray[i] + inputArray[j];
     }
   }
 
   return results;
 `;
 
-function buildFnc(fncCode) {
-  return window.Function(`
-    return (inputArray) => {
-      ${fncCode}
-    };
-  `)();
-}
-
-function* generateIterator(limit) {
-  let idx = 0;
-  while (idx < limit) yield idx++;
-}
-
 function Home() {
   const [state, setGlobalState] = useState({
     code: initialCode,
-    actualFnc: buildFnc(initialCode),
     runningTests: false,
     metrics: [
       {
@@ -46,49 +34,31 @@ function Home() {
   function updateCode(newCode) {
     setGlobalState({
       ...state,
-      code: newCode,
-      actualFnc: buildFnc(newCode)
-    });
-  }
-
-  function runTests(testFnc, tests) {
-    const cases = generateIterator(4);
-    const metrics = [];
-    let actualCase = cases.next();
-
-    return new Promise(function(resolve, reject) {
-      while (actualCase.done !== true) {
-        let arrayItems = 10 ** (actualCase.value + 1);
-        const caseArray = Array.from(Array(arrayItems).keys());
-        const startTime = Date.now();
-
-        testFnc(caseArray);
-        const endTime = Date.now();
-
-        metrics.push({
-          name: arrayItems,
-          time: endTime - startTime
-        });
-        actualCase = cases.next();
-      }
-
-      resolve(metrics);
+      code: newCode
     });
   }
 
   function executeCode() {
-    const { actualFnc } = state;
+    const { code } = state;
 
     try {
-      runTests(actualFnc, 4).then(metrics => {
-        setTimeout(() => {
-          setGlobalState({
-            ...state,
-            metrics,
-            runningTests: false
-          });
+      const runTests = new Worker("ww.js");
+
+      runTests.postMessage([
+        {
+          code,
+          testcases: 4
+        }
+      ]);
+
+      runTests.onmessage = message => {
+        const metrics = message.data && message.data.length > 0 ? message.data : [];
+        setGlobalState({
+          ...state,
+          metrics,
+          runningTests: false
         });
-      });
+      };
     } catch (err) {
       console.log(err);
     }
