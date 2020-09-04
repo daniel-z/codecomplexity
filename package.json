@@ -7,7 +7,7 @@
     "enzyme-adapter-react-16": "^1.15.1",
     "husky": "^3.0.9",
     "lint-staged": "^9.4.2",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "prettier": "^1.18.2",
     "prismjs": "^1.17.1",
     "react": "^16.11.0",
